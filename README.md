@@ -11,8 +11,8 @@ I'm releasing this because someone on reddit had the same use-case and asked nic
 
 ## Set Envvars
 1. `export LOGSEQ_API_KEY=<YOUR-KEY>`
-2. `export LOGSEQ_API_URL=<YOUR-SERVER_URL>`
-    default is "http://127.0.0.1:12315/api"
+2. `export LOGSEQ_API_URL=<YOUR-SERVER_URL>`\
+  default is "http://127.0.0.1:12315/api"
 
 ## Run it
   `logseq-cli journal "my journal note"`
