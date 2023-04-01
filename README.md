@@ -15,6 +15,6 @@ I'm releasing this because someone on reddit had the same use-case and asked nic
   default is "http://127.0.0.1:12315/api"
 
 ## Run it
-  `logseq-cli journal "my journal note"`
-  `logseq-cli j "my journal note"`
+  `logseq-cli journal "my journal note"`\
+  `logseq-cli j "my journal note"`\
   This literally the only command available ATM.
