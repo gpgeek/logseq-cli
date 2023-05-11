@@ -35,21 +35,21 @@ impl Client {
     pub fn add_journal_note(&mut self, note_text: &String) {
         let journal_id = self.current_journal();
 
+        let body = "{\"method\": \"logseq.Editor.insertBlock\", \"args\": [".to_owned()
+        + &journal_id
+        + ", \""
+        + note_text
+        + "\", {\"isPageBlock\": true}]}";
+
         let res = self
             .client
             .post(api_url())
-            .body(
-                "{\"method\": \"logseq.Editor.insertBlock\", \"args\": [".to_owned()
-                    + &journal_id
-                    + ", \""
-                    + note_text
-                    + "\", {\"isPageBlock\": true}]}",
-            )
+            .body(body.clone())
             .send();
 
         match res {
             Ok(_response) => {
-                // println!("Task added to journal! {:?}, {:?}", response.status(), response.text());
+                // println!("Task added to journal! {:?}, {:?} \n\n {:?}", response.status(), response.text(), &body);
             }
             Err(error) => {
                 println!("Error: {:?},  {:?}", error.status(), error);

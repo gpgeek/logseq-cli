@@ -3,6 +3,7 @@ mod logseq_api;
 mod clap_cli;
 
 use clap::Parser;
+use std::io;
 
 
 fn main() {
@@ -17,7 +18,23 @@ fn main() {
         //     }
         // },
         clap_cli::Commands::Journal(journal) => {
-            client.add_journal_note(&journal.text);
+
+            if &journal.text == "-" {
+                let mut buffer = String::new();
+                let stdin = io::stdin();
+
+                match stdin.read_line(&mut buffer) {
+                    Ok(_) => {
+                        buffer = str::replace(&buffer, "\n", "\\n");
+                        client.add_journal_note(&buffer);
+                    },
+                    Err(error) => {
+                        println!("Error: {:?}", error);
+                    },
+                }
+            } else {
+                client.add_journal_note(&journal.text);
+            }
         }
     }
 }
